@@ -1,0 +1,68 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 5,
+            "passed": 4,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1783646458.774778,
+            "stop": 1783646458.8162997
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_report_exists",
+                "status": "passed",
+                "duration": 0.000579159997869283,
+                "start": 1783646458.7965913,
+                "stop": 1783646458.7984958,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_report_valid_json_object",
+                "status": "passed",
+                "duration": 0.0005295900045894086,
+                "start": 1783646458.798773,
+                "stop": 1783646458.8008013,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_total_requests",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0008249739184975624,
+                "start": 1783646458.8010247,
+                "stop": 1783646458.8112576,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_total_requests():\n        # Criterion: \"total_requests\" = number of non-blank log lines.\n        \"\"\"Verifies total_requests matches the recomputed count of non-blank lines.\"\"\"\n        total, _, _ = _ground_truth()\n>       assert _load()[\"total_requests\"] == total\nE       assert 1005 == 6\n\n/tests/test_outputs.py:46: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_unique_ips",
+                "status": "passed",
+                "duration": 0.0005091010243631899,
+                "start": 1783646458.8114877,
+                "stop": 1783646458.8131008,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_top_path",
+                "status": "passed",
+                "duration": 0.00046655599726364017,
+                "start": 1783646458.8133414,
+                "stop": 1783646458.815014,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            }
+        ]
+    }
+}
