@@ -1,0 +1,32 @@
+artifacts = ["/app/report.json"]
+
+[task]
+name = "dynamo/log-report"
+description = "Parse an Apache-style access log into a small JSON summary report."
+
+[metadata]
+category = "data_processing_and_etl"
+subcategory = "text_processing"
+task_objective = ["transform", "generate"]
+artifact_type = ["text_or_log_file", "generated_output_artifact"]
+expert_time_estimate_hours = 0.3
+model_tested = "GPT-5.4"
+agent_tested = "Terminus-2"
+difficulty_explanation = "So The agent must parse an Apache combined access log, correctly extracting the client IP from each line and the request path from the quoted request field, while ignoring blank lines. The report requires three derived values: total request count, count of distinct client IPs, and the single most-requested path. The parsing must handle real log-line structure (quoted request, varied methods) rather than naive whitespace splitting."
+solution_explanation = "Read /app/access.log line by line. For each non-blank line, increment the total, take the first whitespace token as the client IP, and regex-extract the path from the quoted request (METHOD path protocol). Track IPs in a set and paths in a counter. Write total_requests, unique_ips (set size), and top_path (most common path) as JSON to /app/report.json."
+verification_explanation = "The verifier independently recomputes the three expected values directly from /app/access.log and asserts that /app/report.json exists, is valid JSON, and that total_requests, unique_ips, and top_path each equal the recomputed ground truth."
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 120.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+allow_internet = true
+mcp_servers = []
